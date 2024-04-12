@@ -96,6 +96,9 @@ function handleSearch(event) {
 function handleFavouritesButtonClick() {
     document.location.href = 'favourites.html'; // Redirect to the favourites page
 }
+function handleHomeClick() {
+    document.location.href = 'index.html'; // Redirect to the favourites page
+}
 
 // Add event listener to the search input field
 const searchInput = document.querySelector('.search');
@@ -104,6 +107,8 @@ searchInput.addEventListener('input', handleSearch);
 // Add event listener to the favourites button
 const favouritesButton = document.querySelector('.nav-btn');
 favouritesButton.addEventListener('click', handleFavouritesButtonClick);
+const homeButton = document.querySelector('.nav-a');
+favouritesButton.addEventListener('click', handleHomeClick);
 
 // Initial fetch and render
 let superheroes = [];
