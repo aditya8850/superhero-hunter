@@ -104,7 +104,9 @@ button{
     border-radius: 50%;
 }
 .box p{
-    color: white;
+    color: rgb(223, 31, 169);
+    font-size: 1.1rem;
+    font-weight: bold;
     text-align: center;
 }
 .buttons{

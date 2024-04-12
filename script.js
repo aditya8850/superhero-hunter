@@ -1,5 +1,3 @@
-// script.js
-
 let favourites = [];
 const publicKey = '3f755c4c6d18052ed620bd6ddd45a062';
 const privateKey = '475834a74e33a2f3424dbae38ebb31c764b04161';
