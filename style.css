@@ -116,4 +116,11 @@
     border: none;
     background: none;
 }
-
+.main2 h2{
+ color: blueviolet;
+ text-align: center;
+ margin-top: 1rem;
+}
+.fav-search{
+    display: none;
+}

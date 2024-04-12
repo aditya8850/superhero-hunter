@@ -1,11 +1,13 @@
 // script.js
+
+let favourites = [];
 const publicKey = '3f755c4c6d18052ed620bd6ddd45a062';
 const privateKey = '475834a74e33a2f3424dbae38ebb31c764b04161';
 const ts = new Date().getTime().toString();
 const hash = generateHash(ts, privateKey, publicKey);
-const apiUrl = `https://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}`;
-let favourites = [];
-// console.log(apiUrl);
+ const apiUrl = `https://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}`;
+
+
 // Function to generate the hash
 function generateHash(ts, privateKey, publicKey) {
     const stringToHash = ts + privateKey + publicKey;
@@ -22,17 +24,27 @@ function fetchData(url) {
             return response.json();
         })
         .then(data => {
+           
             return data.data.results;
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
         });
-}
+};
 
+function addToFavourites(superhero) {
+    favourites.push(superhero);
+    localStorage.setItem('favouriteHeros', JSON.stringify(favourites));
+    alert("Added to favourites!");
+    console.log(favourites);
+}
 // Function to render superheroes
-function renderSuperheroes(superheroes) {
+export function renderSuperheroes(superheroes) {
     const resultContainer = document.querySelector('.result-container');
     resultContainer.innerHTML = ''; // Clear the previous content
+        // Get the pathname of the current URL
+        const currentPage = document.location.pathname;
+
 
     superheroes.forEach(superhero => {
         const box = document.createElement('div');
@@ -53,11 +65,14 @@ function renderSuperheroes(superheroes) {
         const favouriteButton = document.createElement('button');
         favouriteButton.textContent = 'Favourite';
         favouriteButton.classList.add('favourite-button');
+      
+       
 
         const buttonsContainer = document.createElement('div');
         buttonsContainer.classList.add('buttons');
         buttonsContainer.appendChild(moreDetailsButton);
         buttonsContainer.appendChild(favouriteButton);
+        
 
         box.appendChild(img);
         box.appendChild(name);
@@ -73,28 +88,42 @@ function renderSuperheroes(superheroes) {
         favouriteButton.addEventListener('click', () => {
             addToFavourites(superhero);
         });
-
-        // Function to add superhero to favourites array
-        function addToFavourites(superhero) {
-            favourites.push(superhero);
-            // console.log('Added to favourites:', superhero.name);
-            // console.log('Favourites:', favourites);
-            localStorage.setItem('favourites', JSON.stringify(favourites));
-            
-        };
+        let removeButton= document.createElement('button');
+        
+        // e-listener for remove button:
+        removeButton.addEventListener('click', () => {
+            removeSuperhero(superhero);
+        });
+       
+      
+        function removeSuperhero(superhero) {
+            const index = superheroes.indexOf(superhero);
+            if (index !== -1) {
+                superheroes.splice(index, 1);
+                renderSuperheroes(superheroes); // Re-render the list after removal
+        
+                // Update local storage
+                localStorage.setItem('favouriteHeros', JSON.stringify(superheroes));
+            }
+        }
     });
 };
 
+
+
+// favourites= JSON.parse(localStorage.getItem('favourites'))
 // Function to handle search
 function handleSearch(event) {
     const searchValue = event.target.value.toLowerCase();
     const filteredSuperheroes = superheroes.filter(superhero => superhero.name.toLowerCase().includes(searchValue));
     renderSuperheroes(filteredSuperheroes);
+    console.log((filteredSuperheroes));
 }
 
 // Function to handle favourites button click
 function handleFavouritesButtonClick() {
-    document.location.href = 'favourites.html'; // Redirect to the favourites page
+    document.location.href = 'favourites.html';
+    renderSuperheroes(abcd) // Redirect to the favourites page
 }
 function handleHomeClick() {
     document.location.href = 'index.html'; // Redirect to the home page
@@ -115,12 +144,12 @@ let superheroes = [];
 fetchData(apiUrl)
     .then(data => {
         // console.log(data);
-        renderSuperheroes([]);
         superheroes = data;
+        // console.log(superheroes);
         renderSuperheroes(superheroes);
     });
 
-
+export let abcd=JSON.parse(localStorage.getItem('favouriteHeros'));
 //function to displaty superhero detials:
 function displaySuperheroDetails(superhero) {
     const detailsContainer = document.querySelector('.result-container');
