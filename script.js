@@ -31,7 +31,7 @@ function fetchData(url) {
             console.error('There was a problem with the fetch operation:', error);
         });
 };
-
+//func to add fav heroes to the favourites.html page
 function addToFavourites(superhero) {
     favourites.push(superhero);
     localStorage.setItem('favouriteHeros', JSON.stringify(favourites));
@@ -88,12 +88,18 @@ export function renderSuperheroes(superheroes) {
         favouriteButton.addEventListener('click', () => {
             addToFavourites(superhero);
         });
-        let removeButton= document.createElement('button');
-        
-        // e-listener for remove button:
-        removeButton.addEventListener('click', () => {
-            removeSuperhero(superhero);
-        });
+        if (currentPage.includes('favourites.html')) {
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.classList.add('remove-button');
+            buttonsContainer.appendChild(removeButton);
+            favouriteButton.style.display= "none"
+            
+            // Add event listener to remove button
+            removeButton.addEventListener('click', () => {
+                removeSuperhero(superhero);
+            });
+        }
        
       
         function removeSuperhero(superhero) {
