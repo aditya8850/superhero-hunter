@@ -87,6 +87,11 @@
 .box{ height: 30rem;
     margin: 1rem;
     
+    border-radius: 10%;
+    background: white;
+    border: none;
+    box-shadow: 20px 20px 20px gray;
+    
   
 }
 .box img{
@@ -100,13 +105,20 @@
     text-align: center;
 }
 .buttons{
+    
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 .buttons button{
-    padding: 8px;
+    color: white;
+    font-size: 1rem;
+    background: rgba(0, 166, 255, 0.512);
+    padding: 1.2rem;
+    border: none;
+    border-radius: 8%;
     margin-top: 10px;
+    box-shadow: 1px 1px 10px gray;
 }
 .buttons button:hover{
     transform: scale(1.2);
