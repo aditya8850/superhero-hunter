@@ -5,6 +5,9 @@
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
 }
+button{
+    cursor: pointer;
+}
 .navbar{
     
     height: 13vh;

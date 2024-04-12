@@ -18,5 +18,5 @@ setTimeout(function(){
     
     console.log("task done");
     
-},2000)
+},2500)
 
