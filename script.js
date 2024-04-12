@@ -97,7 +97,7 @@ function handleFavouritesButtonClick() {
     document.location.href = 'favourites.html'; // Redirect to the favourites page
 }
 function handleHomeClick() {
-    document.location.href = 'index.html'; // Redirect to the favourites page
+    document.location.href = 'index.html'; // Redirect to the home page
 }
 
 // Add event listener to the search input field
@@ -108,13 +108,14 @@ searchInput.addEventListener('input', handleSearch);
 const favouritesButton = document.querySelector('.nav-btn');
 favouritesButton.addEventListener('click', handleFavouritesButtonClick);
 const homeButton = document.querySelector('.nav-a');
-favouritesButton.addEventListener('click', handleHomeClick);
+homeButton.addEventListener('click', handleHomeClick);
 
 // Initial fetch and render
 let superheroes = [];
 fetchData(apiUrl)
     .then(data => {
         // console.log(data);
+        renderSuperheroes([]);
         superheroes = data;
         renderSuperheroes(superheroes);
     });
