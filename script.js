@@ -80,13 +80,10 @@ function renderSuperheroes(superheroes) {
             // console.log('Added to favourites:', superhero.name);
             // console.log('Favourites:', favourites);
             localStorage.setItem('favourites', JSON.stringify(favourites));
-            // let favArr= JSON.parse(localStorage.getItem('favourites')) ||[];
-            // console.log(favArr);
-
-
-        }
+            
+        };
     });
-}
+};
 
 // Function to handle search
 function handleSearch(event) {
@@ -112,7 +109,7 @@ favouritesButton.addEventListener('click', handleFavouritesButtonClick);
 let superheroes = [];
 fetchData(apiUrl)
     .then(data => {
-        console.log(data);
+        // console.log(data);
         superheroes = data;
         renderSuperheroes(superheroes);
     });
@@ -128,11 +125,11 @@ function displaySuperheroDetails(superhero) {
 
     const description = document.createElement('p');
     description.textContent = superhero.description || 'No description available';
-    
+
 
     detailsContainer.appendChild(img);
     detailsContainer.appendChild(description);
- 
+
 
 };
 
