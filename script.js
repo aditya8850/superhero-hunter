@@ -3,7 +3,7 @@ const publicKey = '3f755c4c6d18052ed620bd6ddd45a062';
 const privateKey = '475834a74e33a2f3424dbae38ebb31c764b04161';
 const ts = new Date().getTime().toString();
 const hash = generateHash(ts, privateKey, publicKey);
- const apiUrl = `https://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}`;
+const apiUrl = `https://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}`;
 
 
 // Function to generate the hash
@@ -22,7 +22,7 @@ function fetchData(url) {
             return response.json();
         })
         .then(data => {
-           
+
             return data.data.results;
         })
         .catch(error => {
@@ -40,8 +40,8 @@ function addToFavourites(superhero) {
 export function renderSuperheroes(superheroes) {
     const resultContainer = document.querySelector('.result-container');
     resultContainer.innerHTML = ''; // Clear the previous content
-        // Get the pathname of the current URL
-        const currentPage = document.location.pathname;
+    // Get the pathname of the current URL
+    const currentPage = document.location.pathname;
 
 
     superheroes.forEach(superhero => {
@@ -63,14 +63,14 @@ export function renderSuperheroes(superheroes) {
         const favouriteButton = document.createElement('button');
         favouriteButton.textContent = 'Favourite';
         favouriteButton.classList.add('favourite-button');
-      
-       
+
+
 
         const buttonsContainer = document.createElement('div');
         buttonsContainer.classList.add('buttons');
         buttonsContainer.appendChild(moreDetailsButton);
         buttonsContainer.appendChild(favouriteButton);
-        
+
 
         box.appendChild(img);
         box.appendChild(name);
@@ -83,7 +83,8 @@ export function renderSuperheroes(superheroes) {
         });
         //adding e-listener to fav-btn:
 
-        favouriteButton.addEventListener('click', () => {
+        favouriteButton.addEventListener('click', (e) => {
+            console.log(e);
             addToFavourites(superhero);
         });
         if (currentPage.includes('favourites.html')) {
@@ -91,21 +92,21 @@ export function renderSuperheroes(superheroes) {
             removeButton.textContent = 'Remove';
             removeButton.classList.add('remove-button');
             buttonsContainer.appendChild(removeButton);
-            favouriteButton.style.display= "none"
-            
+            favouriteButton.style.display = "none"
+
             // Add event listener to remove button
             removeButton.addEventListener('click', () => {
                 removeSuperhero(superhero);
             });
         }
-       
-      
+
+
         function removeSuperhero(superhero) {
             const index = superheroes.indexOf(superhero);
             if (index !== -1) {
                 superheroes.splice(index, 1);
                 renderSuperheroes(superheroes); // Re-render the list after removal
-        
+
                 // Update local storage
                 localStorage.setItem('favouriteHeros', JSON.stringify(superheroes));
             }
@@ -153,7 +154,7 @@ fetchData(apiUrl)
         renderSuperheroes(superheroes);
     });
 
-export let abcd=JSON.parse(localStorage.getItem('favouriteHeros'));
+export let abcd = JSON.parse(localStorage.getItem('favouriteHeros'));
 //function to displaty superhero detials:
 function displaySuperheroDetails(superhero) {
     const detailsContainer = document.querySelector('.result-container');
