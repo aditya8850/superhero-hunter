@@ -116,7 +116,6 @@ export function renderSuperheroes(superheroes) {
 
 
 
-// favourites= JSON.parse(localStorage.getItem('favourites'))
 // Function to handle search
 function handleSearch(event) {
     const searchValue = event.target.value.toLowerCase();
