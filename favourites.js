@@ -5,7 +5,10 @@ navA.addEventListener("click", function (e) {
 });
 //importing modules from script.js
 import { renderSuperheroes, abcd } from './script.js';
-const favInitialRenderInterval= setTimeout(() => renderSuperheroes([]), 0);
+const favInitialRenderInterval = setTimeout(() => {
+    renderSuperheroes([]);
+    console.log("inital render done");
+}, 0);
 clearTimeout(favInitialRenderInterval)
 setTimeout(function () {
     if (abcd != []) {
