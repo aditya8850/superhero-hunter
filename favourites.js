@@ -5,7 +5,8 @@ navA.addEventListener("click", function (e) {
 });
 //importing modules from script.js
 import { renderSuperheroes, abcd } from './script.js';
-setTimeout(() => renderSuperheroes([]), 0);
+const favInitialRenderInterval= setTimeout(() => renderSuperheroes([]), 0);
+clearTimeout(favInitialRenderInterval)
 setTimeout(function () {
     if (abcd != []) {
         const favHead = document.querySelector('.fav-heading');
